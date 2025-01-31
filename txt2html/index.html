@@ -1,0 +1,50 @@
+<style>
+  body {
+    margin: 0;
+  }
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    background-color: #f2f2f2;
+  }
+
+  textarea {
+    width: 45%;
+    border: none;
+    outline: none;
+    resize: none;
+  }
+
+  button {
+    margin: auto 0;
+    width: 60px;
+    height: 35px;
+    border: 2px solid #aaa;
+    cursor: pointer;
+  }
+</style>
+
+<div>
+  <textarea id="l"></textarea>
+  <button></button>
+  <textarea id="r" readonly></textarea>
+</div>
+
+<script>
+  window.onload = function () {
+    var l = document.getElementById('l')
+    var r = document.getElementById('r');
+    var b = document.querySelector('button');
+
+    b.addEventListener('click', function () {
+      var h = l.value.split('\n');
+      var a = h.map(i => `<p>${i}</p>`).join('\n');
+
+      r.value = a.replace(/　/g, ' ');
+      r.select();
+      document.execCommand('copy');
+    });
+  };
+</script>
